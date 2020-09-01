@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <nav><span class="add">add</span></nav>
+  <nav><span class="add">add</span><span class="update">update</span><span class="delete">delete</span></nav>
+
   <form>
     <input placeholder="title" type="text">
     <input placeholder="tag" type="text">

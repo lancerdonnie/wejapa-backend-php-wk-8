@@ -71,4 +71,47 @@ SET
 
     return false;
   }
+
+  function update()
+  {
+    $query = "UPDATE
+    " . $this->table_name . "
+SET
+    title=:title, tag=:tag, body=:body, author=:author WHERE id=:id";
+
+    $stmt = $this->conn->prepare($query);
+
+    $this->title = htmlspecialchars(strip_tags($this->title));
+    $this->tag = htmlspecialchars(strip_tags($this->tag));
+    $this->body = htmlspecialchars(strip_tags($this->body));
+    $this->author = htmlspecialchars(strip_tags($this->author));
+
+    $stmt->bindParam(":title", $this->title);
+    $stmt->bindParam(":tag", $this->tag);
+    $stmt->bindParam(":body", $this->body);
+    $stmt->bindParam(":author", $this->author);
+    $stmt->bindParam(':id', $this->id);
+
+    if ($stmt->execute()) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function delete()
+  {
+    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    $stmt = $this->conn->prepare($query);
+
+    $this->id = htmlspecialchars(strip_tags($this->id));
+
+    $stmt->bindParam(1, $this->id);
+
+    if ($stmt->execute()) {
+      return true;
+    }
+
+    return false;
+  }
 }

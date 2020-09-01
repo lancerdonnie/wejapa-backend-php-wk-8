@@ -1,5 +1,7 @@
 const blogs = document.querySelector('.blogs');
 const add = document.querySelector('.add');
+const update = document.querySelector('.update');
+const del = document.querySelector('.delete');
 const form = document.querySelector('form');
 const close = document.querySelector('.close');
 
@@ -8,6 +10,22 @@ close.addEventListener('click', (e) => {
 });
 add.addEventListener('click', (e) => {
   form.style.display = 'block';
+});
+update.addEventListener('click', (e) => {
+  const x = { id: 2 };
+  Array.from(Array(4)).forEach((e, i) => {
+    if (i === 0) x.title = 'jide';
+    if (i === 1) x.tag = 'adeded';
+    if (i === 2) x.author = 'wdwdwd';
+    if (i === 3) x.content = 'dedns';
+  });
+  const { data } = axios.post('/api/blogs/update.php', x);
+  console.log(data);
+});
+del.addEventListener('click', (e) => {
+  const x = { id: 2 };
+  const { data } = axios.post('/api/blogs/delete.php', x);
+  console.log(data);
 });
 form.addEventListener('submit', async (e) => {
   e.preventDefault();

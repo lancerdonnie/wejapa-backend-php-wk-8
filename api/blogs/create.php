@@ -32,5 +32,5 @@ if (
   }
 } else {
   http_response_code(400);
-  echo json_encode(array("message" => "Unable to create product. Data is incomplete.", "data" => $data));
+  echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
 }
