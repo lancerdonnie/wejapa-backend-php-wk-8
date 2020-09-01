@@ -1,6 +1,65 @@
+:root {
+  --bg-color: #37003c;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+nav {
+  height: 70px;
+  background-color: var(--bg-color);
+}
+
+.blogs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  position: relative;
+}
+
+.card {
+  width: 250px;
+  border: black 1px solid;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.card-image {
+  height: 150px;
+  border-bottom: black solid 1px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.card-profile {
+  display: flex;
+}
+
+.card-profile-body {
+  flex-direction: column;
+  display: flex;
+}
+
+form {
+  height: calc(100vh - 70px);
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+  background-color: white;
 }
