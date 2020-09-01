@@ -6,22 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wejapa Blog</title>
   <link rel="stylesheet" href="index.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body>
-  <nav><span class="add">add</span><span class="update">update</span><span class="delete">delete</span></nav>
+  <nav>
+    <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
+    <span class="add">Add Post</span>
+  </nav>
 
   <form>
-    <input placeholder="title" type="text">
-    <input placeholder="tag" type="text">
-    <input placeholder="author" type="text">
-    <input placeholder="content" type="text">
-    <span class="close">close</span>
+    <div>
+      <label for="title">Title</label>
+      <input class="form-input" name="title">
+    </div>
+    <div>
+      <label for="tag">Tag</label>
+      <input class="form-input" name="tag">
+    </div>
+    <div>
+      <label for="author">Author</label>
+      <input class="form-input" name="author">
+    </div>
+    <div>
+      <label for="content">Content</label>
+      <textarea class="form-input" name="content"></textarea>
+    </div>
     <button type="submit">submit</button>
+    <button class="close">close</button>
   </form>
-  <div class="blogs">
 
-    <a class="card">
+  <div class="blogs">
+    <!-- <div class="card">
       <div class="card-image"></div>
       <div class="card-body">
         <span>technology</span>
@@ -35,7 +51,7 @@
           </div>
         </div>
       </div>
-    </a>
+    </div> -->
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="index.js"></script>

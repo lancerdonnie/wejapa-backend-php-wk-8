@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 :root {
   --bg-color: #37003c;
+  --accent: #ff2882;
 }
 
 * {
@@ -7,6 +9,10 @@
   margin: 0;
   box-sizing: border-box;
   outline: none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -18,6 +24,15 @@ a {
 nav {
   height: 70px;
   background-color: var(--bg-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+nav span {
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .blogs {
@@ -29,20 +44,45 @@ nav {
 
 .card {
   width: 250px;
-  border: black 1px solid;
   border-radius: 10px;
   margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .card-image {
   height: 150px;
-  border-bottom: black solid 1px;
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  align-items: flex-start;
+}
+
+.card-body > span:first-child,
+.main > div > :nth-child(2) {
+  background-color: var(--accent);
+  border-radius: 10px;
+  color: white;
+  padding: 0 10px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+}
+
+.card-body > span:nth-child(2) {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.card-body > span:nth-child(3) {
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+  height: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .card-profile {
@@ -52,6 +92,12 @@ nav {
 .card-profile-body {
   flex-direction: column;
   display: flex;
+  font-size: 0.75rem;
+}
+.card-profile-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 form {
@@ -62,4 +108,87 @@ form {
   z-index: 2;
   display: none;
   background-color: white;
+  padding: 20px;
+  position: relative;
+}
+form > div {
+  margin-bottom: 10px;
+}
+form button {
+  padding: 10px 15px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+form [type='submit'] {
+  background-color: green;
+  margin-left: 150px;
+}
+form .close {
+  background-color: red;
+}
+
+textarea {
+  width: 70%;
+  height: 50vh;
+  display: block;
+  margin-left: 150px;
+  border-color: var(--accent);
+  border-width: 0.7px;
+}
+input {
+  border: none;
+  border-bottom: 0.7px var(--accent) solid;
+  width: 300px;
+}
+
+label {
+  width: 150px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.fa.fa-trash-o {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  color: red;
+}
+
+.fa.fa-edit {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: green;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.main > div > :first-child {
+  margin-bottom: 20px;
+}
+.main > div > :nth-child(2) {
+  display: inline-block;
+  background-color: rgb(0, 255, 135);
+  color: black;
+}
+.main > div > :nth-child(3) {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.main > div > :nth-child(4) {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.main > div > :nth-child(5) {
+  text-align: justify;
 }
