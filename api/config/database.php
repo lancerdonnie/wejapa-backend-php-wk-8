@@ -4,10 +4,12 @@ use Dotenv\Dotenv;
 
 require '../../vendor/autoload.php';
 
-
-// $dotenv = new Dotenv(__DIR__);
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-$dotenv->load();
+if ($_ENV['APP_ENV'] === 'production') {
+  $dotenv = Dotenv::createImmutable(__DIR__);
+} else {
+  $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+  $dotenv->load();
+}
 
 class Database
 {
