@@ -4,10 +4,9 @@ use Dotenv\Dotenv;
 
 require '../../vendor/autoload.php';
 
-if (getenv('APP_ENV') === 'production') {
-  $dotenv = Dotenv::createImmutable(__DIR__);
-} else {
-  $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+
+if (file_exists(__DIR__ . "/../../.env")) {
   $dotenv->load();
 }
 
