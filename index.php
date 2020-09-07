@@ -1,5 +1,6 @@
 <?php
 include 'core.php';
+$logged;
 if ((isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
   $logged = true;
 }
@@ -19,6 +20,7 @@ if ((isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
   <nav>
     <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
     <span class="add">Add Post</span>
+    <span class="add"><?php echo $logged ?  $_SESSION["email"] : "" ?></span>
     <span class="add"><a href=<?php echo $logged ? "/pages/logout.php" : "/login.php" ?>><?php echo $logged ? "logout" : "login" ?></a> </span>
   </nav>
 

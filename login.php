@@ -4,17 +4,31 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
   header("location: /");
   exit;
 }
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (
-    !empty($_GET["username"]) &&
-    !empty($_GET["password"])
+    !empty($_POST["email"]) &&
+    !empty($_POST["password"])
   ) {
-    session_start();
-    $_SESSION["loggedin"] = true;
-    // $_SESSION["id"] = $id;
-    $_SESSION["username"] = $_GET["username"];
-    header("location: /");
+    include_once './api/config/database.php';
+    include_once './api/objects/user.php';
+
+    $database = new Database();
+    $db = $database->getConnection();
+    $user = new User($db);
+
+    $user->email = $_POST["email"];
+    $user->password = $_POST["password"];
+
+    if ($user->login() === true) {
+      session_start();
+      $_SESSION["loggedin"] = true;
+      $_SESSION["email"] = $_POST["email"];
+      header("location: /");
+    } else {
+      die("username or password incorrect");
+    }
   } else {
+    die("Please enter username or password");
   }
 }
 ?>
@@ -29,25 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 </head>
 
 <body>
-  <form action="" method="get">
-    <input type="text" name="username">
-    <input type="text" name="password">
+  <form action="" method="post">
+    <input type="text" name="email">
+    <input type="password" name="password">
     <button type="submit">Submit</button>
   </form>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- <script>
-    const form = document.querySelector("form")
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault()
-      const {
-        data
-      } = await axios.post("/api/blogs/login.php", {
-        username: "jide",
-        password: "hfi"
-      });
-      console.log(data)
-    })
-  </script> -->
 </body>
 
 </html>

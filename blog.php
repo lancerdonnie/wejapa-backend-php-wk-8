@@ -1,4 +1,10 @@
-<? ini_set('session.save_path', 'tmp');session_start();?>
+<?php
+include_once 'core.php';
+
+$logged;
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) $logged = true;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,9 +51,7 @@
     <button class="close">close</button>
   </form>
   <div class="blogs main">
-    <?php if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
-      echo "<i class='fa fa-edit fa-2x'></i>";
-    } ?>
+    <?php if ($logged) echo "<i class='fa fa-edit fa-2x'></i>"; ?>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="blog.js"></script>
