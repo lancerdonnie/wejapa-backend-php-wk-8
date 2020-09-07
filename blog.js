@@ -7,18 +7,19 @@ const close = document.querySelector('.close');
 let dt;
 
 // contenteditable="true"
-
-document.querySelector('.fa.fa-edit').addEventListener('click', (e) => {
-  blog.style.display = 'none';
-  Array.from(form.querySelectorAll('.form-input')).forEach((e, i) => {
-    console.log(e);
-    if (i === 0) e.value = dt.title;
-    if (i === 1) e.value = dt.tag;
-    if (i === 2) e.value = dt.author;
-    if (i === 3) e.value = dt.body;
+if (document.querySelector('.fa.fa-edit')) {
+  document.querySelector('.fa.fa-edit').addEventListener('click', (e) => {
+    blog.style.display = 'none';
+    Array.from(form.querySelectorAll('.form-input')).forEach((e, i) => {
+      console.log(e);
+      if (i === 0) e.value = dt.title;
+      if (i === 1) e.value = dt.tag;
+      if (i === 2) e.value = dt.author;
+      if (i === 3) e.value = dt.body;
+    });
+    form.style.display = 'block';
   });
-  form.style.display = 'block';
-});
+}
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();

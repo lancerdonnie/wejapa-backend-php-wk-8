@@ -1,3 +1,9 @@
+<?php
+include 'core.php';
+if ((isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
+  $logged = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +19,7 @@
   <nav>
     <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
     <span class="add">Add Post</span>
+    <span class="add"><a href=<?php echo $logged ? "/pages/logout.php" : "/login.php" ?>><?php echo $logged ? "logout" : "login" ?></a> </span>
   </nav>
 
   <form>

@@ -1,3 +1,4 @@
+<? ini_set('session.save_path', 'tmp');session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +45,9 @@
     <button class="close">close</button>
   </form>
   <div class="blogs main">
-    <i class="fa fa-edit fa-2x"></i>
+    <?php if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
+      echo "<i class='fa fa-edit fa-2x'></i>";
+    } ?>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="blog.js"></script>
