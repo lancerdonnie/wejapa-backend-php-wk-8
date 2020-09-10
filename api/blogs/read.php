@@ -23,7 +23,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     "name" => $title,
     "tag" => $tag,
     "body" => $body,
-    "author" => $author,
     "title" => $title,
     "creationDate" => $creationDate,
   );

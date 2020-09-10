@@ -15,7 +15,6 @@ $user = new User($db);
 
 $data = json_decode(file_get_contents("php://input"));
 if (
-  !empty($data->author) &&
   !empty($data->content) &&
   !empty($data->title)
 ) {

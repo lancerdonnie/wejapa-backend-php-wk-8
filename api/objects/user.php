@@ -43,7 +43,7 @@ SET
     // $stmt->bindParam(":updationDate", $this->updationDate);
 
     if ($stmt->execute()) {
-      $query = "SELECT  id FROM " . $this->table_name . " WHERE email =:email";
+      $query = "SELECT  id, email, names, isAdmin FROM " . $this->table_name . " WHERE email =:email";
       $stmt = $this->conn->prepare($query);
       $stmt->bindParam(":email", $this->email);
       $stmt->execute();
@@ -57,7 +57,7 @@ SET
 
   function getUser()
   {
-    $query = "SELECT  email, password FROM " . $this->table_name . " WHERE email =:email";
+    $query = "SELECT  email, password, names, isAdmin, id FROM " . $this->table_name . " WHERE email =:email";
 
     $stmt = $this->conn->prepare($query);
 
@@ -77,7 +77,7 @@ SET
   function login()
   {
 
-    $query = "SELECT  email, password, id FROM " . $this->table_name . " WHERE email =:email";
+    $query = "SELECT  email, password, id, names, isAdmin FROM " . $this->table_name . " WHERE email =:email";
 
     $stmt = $this->conn->prepare($query);
 
@@ -98,79 +98,4 @@ SET
 
     return $row;
   }
-
-  // function read()
-  // {
-  //   $query = "SELECT * FROM $this->table_name";
-
-  //   $stmt = $this->conn->prepare($query);
-
-  //   $stmt->execute();
-
-  //   return $stmt;
-  // }
-
-  // function readOne()
-  // {
-  //   $query = "SELECT * FROM $this->table_name WHERE id = ?";
-
-  //   $stmt = $this->conn->prepare($query);
-
-  //   $stmt->bindParam(1, $this->id);
-
-  //   $stmt->execute();
-
-  //   $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-  //   $this->title = $row['title'];
-  //   $this->tag = $row['tag'];
-  //   $this->body = $row['body'];
-  //   $this->author = $row['author'];
-  //   $this->creationDate = $row['creationDate'];
-  // }
-
-
-
-  //   function update()
-  //   {
-  //     $query = "UPDATE
-  //     " . $this->table_name . "
-  // SET
-  //     title=:title, tag=:tag, body=:body, author=:author WHERE id=:id";
-
-  //     $stmt = $this->conn->prepare($query);
-
-  //     $this->title = htmlspecialchars(strip_tags($this->title));
-  //     $this->tag = htmlspecialchars(strip_tags($this->tag));
-  //     $this->body = htmlspecialchars(strip_tags($this->body));
-  //     $this->author = htmlspecialchars(strip_tags($this->author));
-
-  //     $stmt->bindParam(":title", $this->title);
-  //     $stmt->bindParam(":tag", $this->tag);
-  //     $stmt->bindParam(":body", $this->body);
-  //     $stmt->bindParam(":author", $this->author);
-  //     $stmt->bindParam(':id', $this->id);
-
-  //     if ($stmt->execute()) {
-  //       return true;
-  //     }
-
-  //     return false;
-  //   }
-
-  // function delete()
-  // {
-  //   $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
-  //   $stmt = $this->conn->prepare($query);
-
-  //   $this->id = htmlspecialchars(strip_tags($this->id));
-
-  //   $stmt->bindParam(1, $this->id);
-
-  //   if ($stmt->execute()) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
 }

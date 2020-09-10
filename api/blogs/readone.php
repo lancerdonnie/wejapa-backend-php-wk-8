@@ -18,7 +18,6 @@ $blogs_arr = array(
   "title" => $blog->title,
   "tag" => $blog->tag,
   "body" => $blog->body,
-  "author" => $blog->author,
   "title" => $blog->title,
   "creationDate" => $blog->creationDate,
 );

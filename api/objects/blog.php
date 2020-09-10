@@ -8,7 +8,7 @@ class Blog
   public $title;
   public $tag;
   public $body;
-  public $author;
+  public $userId;
   public $creationDate;
   public $updationDate;
 
@@ -43,7 +43,7 @@ class Blog
     $this->title = $row['title'];
     $this->tag = $row['tag'];
     $this->body = $row['body'];
-    $this->author = $row['author'];
+    $this->userId = $row['userId'];
     $this->creationDate = $row['creationDate'];
   }
 
@@ -52,19 +52,19 @@ class Blog
     $query = "INSERT INTO
     " . $this->table_name . "
 SET
-    title=:title, tag=:tag, body=:body, author=:author";
+    title=:title, tag=:tag, body=:body, userId=:userId";
 
     $stmt = $this->conn->prepare($query);
 
     $this->title = htmlspecialchars(strip_tags($this->title));
     $this->tag = htmlspecialchars(strip_tags($this->tag));
     $this->body = htmlspecialchars(strip_tags($this->body));
-    $this->author = htmlspecialchars(strip_tags($this->author));
+    $this->userId = htmlspecialchars(strip_tags($this->userId));
 
     $stmt->bindParam(":title", $this->title);
     $stmt->bindParam(":tag", $this->tag);
     $stmt->bindParam(":body", $this->body);
-    $stmt->bindParam(":author", $this->author);
+    $stmt->bindParam(":userId", $this->userId);
 
     if ($stmt->execute()) {
       return true;
@@ -78,19 +78,19 @@ SET
     $query = "UPDATE
     " . $this->table_name . "
 SET
-    title=:title, tag=:tag, body=:body, author=:author WHERE id=:id";
+    title=:title, tag=:tag, body=:body, userId=:userId WHERE id=:id";
 
     $stmt = $this->conn->prepare($query);
 
     $this->title = htmlspecialchars(strip_tags($this->title));
     $this->tag = htmlspecialchars(strip_tags($this->tag));
     $this->body = htmlspecialchars(strip_tags($this->body));
-    $this->author = htmlspecialchars(strip_tags($this->author));
+    $this->userId = htmlspecialchars(strip_tags($this->userId));
 
     $stmt->bindParam(":title", $this->title);
     $stmt->bindParam(":tag", $this->tag);
     $stmt->bindParam(":body", $this->body);
-    $stmt->bindParam(":author", $this->author);
+    $stmt->bindParam(":userId", $this->userId);
     $stmt->bindParam(':id', $this->id);
 
     if ($stmt->execute()) {

@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["id"] = $details["id"];
+    $_SESSION["isAdmin"] = $details["isAdmin"];
     header("location: /");
   } else {
     die("couldnt create user");

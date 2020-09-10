@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION["loggedin"] = true;
       $_SESSION["id"] = $details['id'];
       $_SESSION["email"] = $_POST["email"];
+      $_SESSION["isAdmin"] = $_POST["isAdmin"];
       header("location: /");
     } else {
       die("username or password incorrect");

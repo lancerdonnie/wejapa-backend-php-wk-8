@@ -34,10 +34,6 @@ if ((isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
       <input class="form-input" name="tag">
     </div>
     <div>
-      <label for="author">Author</label>
-      <input class="form-input" name="author">
-    </div>
-    <div>
       <label for="content">Content</label>
       <textarea class="form-input" name="content"></textarea>
     </div>
