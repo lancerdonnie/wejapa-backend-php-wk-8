@@ -126,7 +126,7 @@ SET
   //   $this->tag = $row['tag'];
   //   $this->body = $row['body'];
   //   $this->author = $row['author'];
-  //   $this->created = $row['created'];
+  //   $this->creationDate = $row['creationDate'];
   // }
 
 

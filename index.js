@@ -68,7 +68,7 @@ const getInitialData = async () => {
           <div class='card-profile-image'><img src=${ava} /></div>
           <div class='card-profile-body'>
             <span>${blog.author}</span>
-            <span>${blog.created}</span>
+            <span>${blog.creationDate}</span>
           </div>
         </div>
       </div>

@@ -2,13 +2,11 @@
 class Blog
 {
   private $conn;
-  private $table_name = "blogs";
+  private $table_name = "categories";
 
   public $id;
   public $title;
-  public $tag;
-  public $body;
-  public $author;
+  public $adminId;
   public $creationDate;
   public $updationDate;
 
@@ -41,9 +39,7 @@ class Blog
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $this->title = $row['title'];
-    $this->tag = $row['tag'];
-    $this->body = $row['body'];
-    $this->author = $row['author'];
+    $this->adminId = $row['adminId'];
     $this->creationDate = $row['creationDate'];
   }
 
@@ -52,19 +48,15 @@ class Blog
     $query = "INSERT INTO
     " . $this->table_name . "
 SET
-    title=:title, tag=:tag, body=:body, author=:author";
+    title=:title, adminId=:adminId";
 
     $stmt = $this->conn->prepare($query);
 
     $this->title = htmlspecialchars(strip_tags($this->title));
-    $this->tag = htmlspecialchars(strip_tags($this->tag));
-    $this->body = htmlspecialchars(strip_tags($this->body));
-    $this->author = htmlspecialchars(strip_tags($this->author));
+    $this->adminId = htmlspecialchars(strip_tags($this->adminId));
 
     $stmt->bindParam(":title", $this->title);
-    $stmt->bindParam(":tag", $this->tag);
-    $stmt->bindParam(":body", $this->body);
-    $stmt->bindParam(":author", $this->author);
+    $stmt->bindParam(":adminId", $this->adminId);
 
     if ($stmt->execute()) {
       return true;
@@ -78,19 +70,16 @@ SET
     $query = "UPDATE
     " . $this->table_name . "
 SET
-    title=:title, tag=:tag, body=:body, author=:author WHERE id=:id";
+    title=:title, adminId=:adminId, WHERE id=:id";
 
     $stmt = $this->conn->prepare($query);
 
     $this->title = htmlspecialchars(strip_tags($this->title));
-    $this->tag = htmlspecialchars(strip_tags($this->tag));
-    $this->body = htmlspecialchars(strip_tags($this->body));
-    $this->author = htmlspecialchars(strip_tags($this->author));
+    $this->adminId = htmlspecialchars(strip_tags($this->adminId));
+    $this->id = htmlspecialchars(strip_tags($this->id));
 
     $stmt->bindParam(":title", $this->title);
-    $stmt->bindParam(":tag", $this->tag);
-    $stmt->bindParam(":body", $this->body);
-    $stmt->bindParam(":author", $this->author);
+    $stmt->bindParam(":adminId", $this->adminId);
     $stmt->bindParam(':id', $this->id);
 
     if ($stmt->execute()) {

@@ -25,7 +25,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     "body" => $body,
     "author" => $author,
     "title" => $title,
-    "created" => $created,
+    "creationDate" => $creationDate,
   );
 
   array_push($blogs_arr, $blog_item);

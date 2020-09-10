@@ -20,7 +20,7 @@ $blogs_arr = array(
   "body" => $blog->body,
   "author" => $blog->author,
   "title" => $blog->title,
-  "created" => $blog->created,
+  "creationDate" => $blog->creationDate,
 );
 
 http_response_code(200);
