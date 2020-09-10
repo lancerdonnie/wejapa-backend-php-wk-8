@@ -43,7 +43,12 @@ SET
     // $stmt->bindParam(":updationDate", $this->updationDate);
 
     if ($stmt->execute()) {
-      return true;
+      $query = "SELECT  id FROM " . $this->table_name . " WHERE email =:email";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(":email", $this->email);
+      $stmt->execute();
+      $details = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $details;
     }
     // print_r($stmt->errorInfo());
     // die();
@@ -72,7 +77,7 @@ SET
   function login()
   {
 
-    $query = "SELECT  email, password FROM " . $this->table_name . " WHERE email =:email";
+    $query = "SELECT  email, password, id FROM " . $this->table_name . " WHERE email =:email";
 
     $stmt = $this->conn->prepare($query);
 
@@ -91,7 +96,7 @@ SET
       return false;
     }
 
-    return true;
+    return $row;
   }
 
   // function read()

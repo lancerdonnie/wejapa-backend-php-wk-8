@@ -18,10 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $user->email = $_POST["email"];
     $user->password = $_POST["password"];
+    $details = $user->login();
 
-    if ($user->login() === true) {
+    if ($details) {
       session_start();
       $_SESSION["loggedin"] = true;
+      $_SESSION["id"] = $details['id'];
       $_SESSION["email"] = $_POST["email"];
       header("location: /");
     } else {

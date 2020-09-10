@@ -24,11 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user->names = $_POST["names"];
   $user->email = $_POST["email"];
   $user->password = $_POST["password"];
+  $details = $user->create();
 
-  if ($user->create() === true) {
+  if ($user->create()) {
     session_start();
     $_SESSION["loggedin"] = true;
     $_SESSION["email"] = $_POST["email"];
+    $_SESSION["id"] = $details["id"];
     header("location: /");
   } else {
     die("couldnt create user");
