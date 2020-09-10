@@ -19,15 +19,6 @@ if ($blog) {
   <title>Wejapa Blog</title>
   <link rel="stylesheet" href="index.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-  <style>
-    .blogs {
-      /* display: none; */
-    }
-
-    form {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -35,24 +26,9 @@ if ($blog) {
     <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
     <span></span>
   </nav>
-  <form>
-    <div>
-      <label for="title">Title</label>
-      <input class="form-input" name="title">
-    </div>
-    <div>
-      <label for="tag">Tag</label>
-      <input class="form-input" name="tag">
-    </div>
-    <div>
-      <label for="content">Content</label>
-      <textarea class="form-input" name="content"></textarea>
-    </div>
-    <button type="submit">update</button>
-    <button class="close">close</button>
-  </form>
   <div class="blogs main">
     <?php if ($logged) {
+      echo "<a href=" . "/api/blogs/delete.php?id=" . $blog['id'] . "><i class='fa fa-2x fa-trash-o'></i></a>";
       echo "<a href=" . "/update.php?id=" . $blog['id'] . "><i class='fa fa-edit fa-2x'></i></a>";
     } ?>
     <div>

@@ -150,9 +150,10 @@ label {
 }
 
 .fa.fa-trash-o {
+  cursor: pointer;
   position: absolute;
-  bottom: 20px;
-  right: 10px;
+  top: 20px;
+  right: 70px;
   color: red;
 }
 
