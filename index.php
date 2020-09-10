@@ -1,9 +1,12 @@
 <?php
 include 'core.php';
+include "api/blogs/read.php";
+
 $logged;
 if ((isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
   $logged = true;
 }
+$blogs = readBlog();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,42 +27,26 @@ if ((isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
     <span class="add"><a href=<?php echo $logged ? "/pages/logout.php" : "/login.php" ?>><?php echo $logged ? "logout" : "login" ?></a> </span>
   </nav>
 
-  <form>
-    <div>
-      <label for="title">Title</label>
-      <input class="form-input" name="title">
-    </div>
-    <div>
-      <label for="tag">Tag</label>
-      <input class="form-input" name="tag">
-    </div>
-    <div>
-      <label for="content">Content</label>
-      <textarea class="form-input" name="content"></textarea>
-    </div>
-    <button type="submit">submit</button>
-    <button class="close">close</button>
-  </form>
-
   <div class="blogs">
-    <!-- <div class="card">
-      <div class="card-image"></div>
-      <div class="card-body">
-        <span>technology</span>
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum tempora modi fugit illo, velit esse ab doloribus ducimus adipisci </span>
-        <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam consectetur, magnam harum autem quam quos, ad laboriosam expedita</span>
-        <div class="card-profile">
-          <div class="card-profile-image"></div>
-          <div class="card-profile-body">
-            <span>Carrie brewer</span>
-            <span>2h ago</span>
+    <?php foreach ($blogs as $value) : ?>
+      <a href="/blog.php?id=<?= $value['id'] ?>" class="card" id=<?= $value['id'] ?>>
+        <div class='card-image'><img src=<?= $img ?> /></div>
+        <div class='card-body'>
+          <span><?= $value['category'] ?></span>
+          <span><?= $value['title'] ?></span>
+          <span><?= $value['body'] ?></span>
+          <div class='card-profile'>
+            <div class='card-profile-image'><img src=<?= $ava ?> /></div>
+            <div class='card-profile-body'>
+              <span><?= $value['email'] ?></span>
+              <span><?= $value['creationDate'] ?></span>
+            </div>
           </div>
         </div>
-      </div>
-    </div> -->
+        <i class="fa fa-trash-o"></i>
+      </a>
+    <?php endforeach; ?>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="index.js"></script>
 </body>
 
 </html>

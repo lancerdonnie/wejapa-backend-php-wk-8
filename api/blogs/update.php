@@ -17,7 +17,6 @@ $blog->id = $data->id;
 
 $blog->body = $data->content;
 $blog->title = $data->title;
-$blog->tag = $data->tag;
 
 if (
   $blog->update()

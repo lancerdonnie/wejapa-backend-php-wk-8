@@ -28,7 +28,6 @@ if (
   $blog->title = $data->title;
   $blog->body = $data->content;
   $blog->author = $data->author;
-  $blog->tag = $data->tag;
 
   if ($blog->create()) {
     http_response_code(201);

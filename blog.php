@@ -1,8 +1,13 @@
 <?php
 include_once 'core.php';
+include "api/blogs/readone.php";
 
 $logged;
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) $logged = true;
+$blog = readOne();
+if ($blog) {
+  $blog = $blog[0];
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +21,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) $logged = tr
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <style>
     .blogs {
-      display: none;
+      /* display: none; */
     }
 
     form {
@@ -47,10 +52,17 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) $logged = tr
     <button class="close">close</button>
   </form>
   <div class="blogs main">
-    <?php if ($logged) echo "<i class='fa fa-edit fa-2x'></i>"; ?>
+    <?php if ($logged) {
+      echo "<a href=" . "/update.php?id=" . $blog['id'] . "><i class='fa fa-edit fa-2x'></i></a>";
+    } ?>
+    <div>
+      <h1><?= $blog['title'] ?></h1>
+      <span><?= $blog['category'] ?></span>
+      <span class="created"><?= $blog['createdDate'] ?></span>
+      <div><?= $blog['body'] ?></div>
+    </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="blog.js"></script>
+  <!-- <script src="blog.js"></script> -->
 </body>
 
 </html>

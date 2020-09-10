@@ -1,5 +1,5 @@
 <?php
-class Blog
+class Category
 {
   private $conn;
   private $table_name = "categories";
@@ -23,7 +23,17 @@ class Blog
 
     $stmt->execute();
 
-    return $stmt;
+    $categories = array();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+      $item = array(
+        "id" => $id,
+        "title" => $title,
+      );
+      array_push($categories, $item);
+    }
+    return $categories;
   }
 
   function readOne()

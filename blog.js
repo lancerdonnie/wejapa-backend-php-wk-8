@@ -10,12 +10,12 @@ let dt;
 if (document.querySelector('.fa.fa-edit')) {
   document.querySelector('.fa.fa-edit').addEventListener('click', (e) => {
     blog.style.display = 'none';
-    Array.from(form.querySelectorAll('.form-input')).forEach((e, i) => {
-      console.log(e);
-      if (i === 0) e.value = dt.title;
-      if (i === 1) e.value = dt.tag;
-      if (i === 2) e.value = dt.body;
-    });
+    // Array.from(form.querySelectorAll('.form-input')).forEach((e, i) => {
+    //   console.log(e);
+    //   if (i === 0) e.value = dt.title;
+    //   if (i === 1) e.value = dt.tag;
+    //   if (i === 2) e.value = dt.body;
+    // });
     form.style.display = 'block';
   });
 }
@@ -57,4 +57,4 @@ const getData = async () => {
   }
 };
 
-getData();
+// getData();
