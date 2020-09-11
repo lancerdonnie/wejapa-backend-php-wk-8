@@ -30,7 +30,7 @@ $blogs = $blogs->search($_GET['search']);
   <nav>
     <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
     <span>
-      <form class="search" action="/search.php"><input name="search" type="text"></form>
+      <form class="search" action="/search.php"><input name="search" type="text" value="<?= $_GET['search'] ?>"></form>
     </span>
   </nav>
 

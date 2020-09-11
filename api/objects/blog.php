@@ -151,6 +151,7 @@ SET
     OR b.name LIKE ? 
     OR b.title LIKE ? 
     OR b.body LIKE ? 
+    OR u.email LIKE ?
     OR c.title LIKE ?";
 
     $stmt = $this->conn->prepare($query);
@@ -163,6 +164,7 @@ SET
     $stmt->bindParam(3, $keywords);
     $stmt->bindParam(4, $keywords);
     $stmt->bindParam(5, $keywords);
+    $stmt->bindParam(6, $keywords);
 
     $stmt->execute();
 
