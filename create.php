@@ -76,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <textarea class="form-input" name="content"><?= $_POST['body']; ?></textarea>
     </div>
     <button type="submit">submit</button>
-    <button class="close">close</button>
   </form>
 </body>
 

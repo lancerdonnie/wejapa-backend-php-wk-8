@@ -138,4 +138,50 @@ SET
 
     return false;
   }
+
+  function search($keywords)
+  {
+    $query = "SELECT b.id, b.name, b.creationDate, b.title, b.body, c.title as category, u.id as userId, u.email as email
+    FROM blogs b
+    JOIN categories c 
+    ON b.category=c.id
+    JOIN users u 
+    ON u.id=b.userId
+    WHERE c.title LIKE ?
+    OR b.name LIKE ? 
+    OR b.title LIKE ? 
+    OR b.body LIKE ? 
+    OR c.title LIKE ?";
+
+    $stmt = $this->conn->prepare($query);
+
+    $keywords = htmlspecialchars(strip_tags($keywords));
+    $keywords = "%{$keywords}%";
+
+    $stmt->bindParam(1, $keywords);
+    $stmt->bindParam(2, $keywords);
+    $stmt->bindParam(3, $keywords);
+    $stmt->bindParam(4, $keywords);
+    $stmt->bindParam(5, $keywords);
+
+    $stmt->execute();
+
+    $blog_arr = array();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+      $blog_item = array(
+        "id" => $id,
+        "body" => $body,
+        "title" => $title,
+        "category" => $category,
+        "categoryId" => $categoryId,
+        "userId" => $userId,
+        "email" => $email,
+        "creationDate" => $creationDate,
+      );
+      array_push($blog_arr, $blog_item);
+    }
+    return $blog_arr;
+  }
 }

@@ -3,11 +3,13 @@ include_once 'core.php';
 include "api/blogs/readone.php";
 
 $logged;
+$belongs;
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) $logged = true;
 $blog = readOne();
 if ($blog) {
   $blog = $blog[0];
 }
+if ($blog['userId'] === $_SESSION["id"]) $belongs = true;
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +29,7 @@ if ($blog) {
     <span></span>
   </nav>
   <div class="blogs main">
-    <?php if ($logged) {
+    <?php if ($logged && $belongs) {
       echo "<a href=" . "/api/blogs/delete.php?id=" . $blog['id'] . "><i class='fa fa-2x fa-trash-o'></i></a>";
       echo "<a href=" . "/update.php?id=" . $blog['id'] . "><i class='fa fa-edit fa-2x'></i></a>";
     } ?>

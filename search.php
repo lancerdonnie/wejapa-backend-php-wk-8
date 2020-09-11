@@ -1,15 +1,20 @@
 <?php
 include 'core.php';
-include "api/blogs/read.php";
+include_once './api/config/database.php';
+include_once './api/objects/blog.php';
 
-$logged;
 if ((isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
-  $logged = true;
 } else {
   header("location: /login.php");
 }
-$blogs = readBlog();
+
+$database = new Database();
+$db = $database->getConnection();
+
+$blogs = new Blog($db);
+$blogs = $blogs->search($_GET['search']);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +29,9 @@ $blogs = readBlog();
 <body>
   <nav>
     <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
-    <span class="add"><?= $logged ? '<a href="/create.php">Add Post</a>' : "" ?></span>
-    <span class="add"><?php echo $_SESSION['isAdmin'] ?  '<a href="/categories.php">Categories</a>'  : "" ?></span>
-    <span class="add"><?php echo $logged ?  $_SESSION["email"] : "" ?></span>
     <span>
       <form class="search" action="/search.php"><input name="search" type="text"></form>
     </span>
-    <span class="add"><a href=<?php echo $logged ? "/pages/logout.php" : "/login.php" ?>><?php echo $logged ? "logout" : "login" ?></a> </span>
   </nav>
 
   <div class="blogs">

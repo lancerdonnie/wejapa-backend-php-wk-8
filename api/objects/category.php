@@ -80,21 +80,25 @@ SET
     $query = "UPDATE
     " . $this->table_name . "
 SET
-    title=:title, adminId=:adminId, WHERE id=:id";
+    title=:title, adminId=:adminId,updationDate=:updationDate WHERE id=:id";
 
     $stmt = $this->conn->prepare($query);
 
     $this->title = htmlspecialchars(strip_tags($this->title));
     $this->adminId = htmlspecialchars(strip_tags($this->adminId));
     $this->id = htmlspecialchars(strip_tags($this->id));
+    $this->updationDate = htmlspecialchars(strip_tags($this->updationDate));
 
     $stmt->bindParam(":title", $this->title);
     $stmt->bindParam(":adminId", $this->adminId);
     $stmt->bindParam(':id', $this->id);
+    $stmt->bindParam(":updationDate", $this->updationDate);
 
     if ($stmt->execute()) {
       return true;
     }
+    var_dump($this);
+    die();
 
     return false;
   }

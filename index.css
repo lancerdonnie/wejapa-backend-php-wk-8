@@ -100,7 +100,7 @@ nav span {
   margin-right: 10px;
 }
 
-form {
+form:not(.search) {
   height: calc(100vh - 70px);
   width: 100vw;
   top: 0;
