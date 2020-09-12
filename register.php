@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div><label for="confirm">Confirm Password</label><input type="password" name="confirm"></div>
     <button type="submit">Submit</button>
   </form>
+  <a href="/login.php">Login</a>
 </body>
 
 </html>

@@ -37,7 +37,7 @@ $blogs = $blogs->search($_GET['search']);
   <div class="blogs">
     <?php foreach ($blogs as $value) : ?>
       <a href="/blog.php?id=<?= $value['id'] ?>" class="card" id=<?= $value['id'] ?>>
-        <div class='card-image'><img src=<?= $img ?> /></div>
+        <div class='card-image'><img src=<?= $value['image'] ?? $img ?> /></div>
         <div class='card-body'>
           <span><?= $value['category'] ?></span>
           <span><?= $value['title'] ?></span>

@@ -97,9 +97,6 @@ SET
     if ($stmt->execute()) {
       return true;
     }
-    var_dump($this);
-    die();
-
     return false;
   }
 

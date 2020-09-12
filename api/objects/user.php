@@ -19,6 +19,8 @@ class User
 
   function create()
   {
+    if ($this->getUser()) return false;
+
     $query = "INSERT INTO
     " . $this->table_name . "
 SET
@@ -50,8 +52,6 @@ SET
       $details = $stmt->fetch(PDO::FETCH_ASSOC);
       return $details;
     }
-    // print_r($stmt->errorInfo());
-    // die();
     return false;
   }
 
@@ -90,8 +90,6 @@ SET
     if (!$row) {
       return false;
     }
-    // echo $this->email . "  " . $this->password;
-    // die();
     if ($row['password'] !== $this->password) {
       return false;
     }

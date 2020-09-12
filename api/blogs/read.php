@@ -27,6 +27,7 @@ function readBlog()
       "category" => $category,
       "userId" => $userId,
       "email" => $email,
+      "image" => $image,
       "creationDate" => $creationDate,
     );
 

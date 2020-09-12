@@ -20,7 +20,7 @@ class Blog
   function read()
   {
     $query = "
-      SELECT blogs.id, blogs.name,blogs.creationDate,blogs.title,blogs.body,categories.title as category,users.id as userId, users.email as email
+      SELECT blogs.id, blogs.name,blogs.creationDate,blogs.title,blogs.body,blogs.image,categories.title as category,users.id as userId, users.email as email
       FROM $this->table_name
       JOIN categories ON $this->table_name.category=categories.id
       JOIN users ON users.id=blogs.userId";
@@ -36,7 +36,7 @@ class Blog
   function readOne()
   {
     $query = "
-      SELECT blogs.id, blogs.name,blogs.creationDate,blogs.title,blogs.body,categories.title as category,categories.id as categoryId,users.id as userId, users.email as email
+      SELECT blogs.id, blogs.name,blogs.creationDate,blogs.title,blogs.body,blogs.image,categories.title as category,categories.id as categoryId,users.id as userId, users.email as email
       FROM $this->table_name
       JOIN categories ON $this->table_name.category=categories.id
       JOIN users ON users.id=blogs.userId
@@ -61,6 +61,7 @@ class Blog
         "categoryId" => $categoryId,
         "userId" => $userId,
         "email" => $email,
+        "image" => $image,
         "creationDate" => $creationDate,
       );
       array_push($blog_arr, $blog_item);
@@ -70,10 +71,11 @@ class Blog
 
   function create()
   {
+
     $query = "INSERT INTO
     " . $this->table_name . "
 SET
-    title=:title, body=:body, userId=:userId, category=:category";
+    title=:title, body=:body, userId=:userId, category=:category, image=:image";
 
     $stmt = $this->conn->prepare($query);
 
@@ -81,11 +83,13 @@ SET
     $this->body = htmlspecialchars(strip_tags($this->body));
     $this->userId = htmlspecialchars(strip_tags($this->userId));
     $this->category = htmlspecialchars(strip_tags($this->category));
+    $this->image = htmlspecialchars(strip_tags($this->image));
 
     $stmt->bindParam(":title", $this->title);
     $stmt->bindParam(":body", $this->body);
     $stmt->bindParam(":userId", $this->userId);
     $stmt->bindParam(":category", $this->category);
+    $stmt->bindParam(":image", $this->image);
 
     if ($stmt->execute()) {
       return true;
@@ -141,7 +145,7 @@ SET
 
   function search($keywords)
   {
-    $query = "SELECT b.id, b.name, b.creationDate, b.title, b.body, c.title as category, u.id as userId, u.email as email
+    $query = "SELECT b.id, b.name, b.creationDate, b.title, b.body,b.image, c.title as category, u.id as userId, u.email as email
     FROM blogs b
     JOIN categories c 
     ON b.category=c.id
@@ -177,9 +181,10 @@ SET
         "body" => $body,
         "title" => $title,
         "category" => $category,
-        "categoryId" => $categoryId,
+        // "categoryId" => $categoryId,
         "userId" => $userId,
         "email" => $email,
+        "image" => $image,
         "creationDate" => $creationDate,
       );
       array_push($blog_arr, $blog_item);
