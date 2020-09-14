@@ -24,25 +24,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     !empty($_POST["content"])
   ) {
     include_once './api/objects/blog.php';
-    $target_dir = "images/";
-    $_FILES["fileToUpload"]["name"] = $_SESSION['id'] . "-" . $_FILES["fileToUpload"]["name"];
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $target_file;
+    if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['size'] > 0) {
+      $target_dir = "images/";
+      $_FILES["fileToUpload"]["name"] = $_SESSION['id'] . "-" . $_FILES["fileToUpload"]["name"];
+      $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    if ($_FILES["fileToUpload"]["size"] > 250000) {
-      die("Sorry, your file is too large.");
+      if ($_FILES["fileToUpload"]["size"] > 250000) {
+        die("Sorry, your file is too large.");
+      }
+
+      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+      } else {
+        die("Sorry, there was an error uploading your file.");
+      }
     }
 
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    } else {
-      die("Sorry, there was an error uploading your file.");
-    }
     $bl = new Blog($db);
     $bl->title = $_POST["title"];
     $bl->body = $_POST["content"];
     $bl->category = $_POST["category"];
     $bl->userId = $_SESSION["id"];
-    $bl->image = $target_file;
+    if ($target_file) $bl->image = $target_file;
 
     $isSuccess = $bl->create();
     if ($isSuccess) {

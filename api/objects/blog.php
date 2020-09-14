@@ -71,7 +71,6 @@ class Blog
 
   function create()
   {
-
     $query = "INSERT INTO
     " . $this->table_name . "
 SET
@@ -94,7 +93,6 @@ SET
     if ($stmt->execute()) {
       return true;
     }
-
     return false;
   }
 

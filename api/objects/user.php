@@ -19,7 +19,7 @@ class User
 
   function create()
   {
-    if ($this->getUser()) return false;
+    if (!$this->getUser()) return false;
 
     $query = "INSERT INTO
     " . $this->table_name . "
