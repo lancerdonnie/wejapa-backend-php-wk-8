@@ -62,6 +62,7 @@ $cat = $cat->read();
     <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
     <span></span>
   </nav>
+  <div>click to edit</div>
   <ul>
     <?php foreach ($cat as $value) : ?>
       <li id="<?= $value['id'] ?>"><?= $value['title'] ?></li>
