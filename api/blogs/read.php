@@ -1,35 +1,40 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+// header("Access-Control-Allow-Origin: *");
+// header("Content-Type: application/json; charset=UTF-8");
 
-include_once '../config/database.php';
-include_once '../objects/blog.php';
+include_once __DIR__ . '/../config/database.php';
+include_once __DIR__ . '/../objects/blog.php';
 
-$database = new Database();
-$db = $database->getConnection();
+function readBlog()
+{
+  $database = new Database();
+  $db = $database->getConnection();
 
-$blog = new Blog($db);
+  $blog = new Blog($db);
 
-$stmt = $blog->read();
-$num = $stmt->rowCount();
+  $stmt = $blog->read();
+  $num = $stmt->rowCount();
 
-$blogs_arr = array();
+  $blogs_arr = array();
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  extract($row);
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    extract($row);
 
-  $blog_item = array(
-    "id" => $id,
-    "name" => $title,
-    "tag" => $tag,
-    "body" => $body,
-    "author" => $author,
-    "title" => $title,
-    "created" => $created,
-  );
+    $blog_item = array(
+      "id" => $id,
+      "body" => $body,
+      "title" => $title,
+      "category" => $category,
+      "userId" => $userId,
+      "email" => $email,
+      "image" => $image,
+      "creationDate" => $creationDate,
+    );
 
-  array_push($blogs_arr, $blog_item);
-}
+    array_push($blogs_arr, $blog_item);
+  }
+  return $blogs_arr;
+};
 
-http_response_code(200);
-echo json_encode($blogs_arr);
+// http_response_code(200);
+// echo json_encode(readBlog());

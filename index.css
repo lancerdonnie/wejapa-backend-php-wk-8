@@ -100,13 +100,12 @@ nav span {
   margin-right: 10px;
 }
 
-form {
+form:not(.search) {
   height: calc(100vh - 70px);
   width: 100vw;
   top: 0;
   left: 0;
   z-index: 2;
-  display: none;
   background-color: white;
   padding: 20px;
   position: relative;
@@ -151,9 +150,10 @@ label {
 }
 
 .fa.fa-trash-o {
+  cursor: pointer;
   position: absolute;
-  bottom: 20px;
-  right: 10px;
+  top: 20px;
+  right: 70px;
   color: red;
 }
 

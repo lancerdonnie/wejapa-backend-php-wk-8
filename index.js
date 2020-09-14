@@ -35,8 +35,7 @@ form.addEventListener('submit', async (e) => {
   Array.from(e.target.querySelectorAll('.form-input')).forEach((e, i) => {
     if (i === 0) x.title = e.value;
     if (i === 1) x.tag = e.value;
-    if (i === 2) x.author = e.value;
-    if (i === 3) x.content = e.value;
+    if (i === 2) x.content = e.value;
   });
   const res = await axios.post('/api/blogs/create.php', x);
   if ((res.status = '200')) {
@@ -67,8 +66,7 @@ const getInitialData = async () => {
         <div class='card-profile'>
           <div class='card-profile-image'><img src=${ava} /></div>
           <div class='card-profile-body'>
-            <span>${blog.author}</span>
-            <span>${blog.created}</span>
+            <span>${blog.creationDate}</span>
           </div>
         </div>
       </div>

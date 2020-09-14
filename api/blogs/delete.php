@@ -1,7 +1,7 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+// header("Access-Control-Allow-Origin: *");
+// header("Content-Type: application/json; charset=UTF-8");
+// header("Access-Control-Allow-Methods: POST");
 
 include_once '../config/database.php';
 include_once '../objects/blog.php';
@@ -11,14 +11,16 @@ $db = $database->getConnection();
 
 $blog = new Blog($db);
 
-$data = json_decode(file_get_contents("php://input"));
-
-$blog->id = $data->id;
+$blog->id =  $_GET['id'];
 
 if ($blog->delete()) {
-  http_response_code(200);
-  echo json_encode(array("message" => "Blog post was deleted."));
+  // http_response_code(200);
+  // return true;
+  header("location: /");
+  // echo json_encode(array("message" => "Blog post was deleted."));
 } else {
-  http_response_code(503);
-  echo json_encode(array("message" => "Unable to delete blog post."));
+  header("location: /blog.php?=" . $_GET['id']);
+  // return false;
+  // http_response_code(503);
+  // echo json_encode(array("message" => "Unable to delete blog post."));
 }

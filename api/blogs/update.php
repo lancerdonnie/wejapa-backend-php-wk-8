@@ -15,10 +15,8 @@ $data = json_decode(file_get_contents("php://input"));
 
 $blog->id = $data->id;
 
-$blog->author = $data->author;
 $blog->body = $data->content;
 $blog->title = $data->title;
-$blog->tag = $data->tag;
 
 if (
   $blog->update()

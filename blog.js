@@ -7,18 +7,18 @@ const close = document.querySelector('.close');
 let dt;
 
 // contenteditable="true"
-
-document.querySelector('.fa.fa-edit').addEventListener('click', (e) => {
-  blog.style.display = 'none';
-  Array.from(form.querySelectorAll('.form-input')).forEach((e, i) => {
-    console.log(e);
-    if (i === 0) e.value = dt.title;
-    if (i === 1) e.value = dt.tag;
-    if (i === 2) e.value = dt.author;
-    if (i === 3) e.value = dt.body;
+if (document.querySelector('.fa.fa-edit')) {
+  document.querySelector('.fa.fa-edit').addEventListener('click', (e) => {
+    blog.style.display = 'none';
+    // Array.from(form.querySelectorAll('.form-input')).forEach((e, i) => {
+    //   console.log(e);
+    //   if (i === 0) e.value = dt.title;
+    //   if (i === 1) e.value = dt.tag;
+    //   if (i === 2) e.value = dt.body;
+    // });
+    form.style.display = 'block';
   });
-  form.style.display = 'block';
-});
+}
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -26,8 +26,7 @@ form.addEventListener('submit', async (e) => {
   Array.from(e.target.querySelectorAll('.form-input')).forEach((e, i) => {
     if (i === 0) x.title = e.value;
     if (i === 1) x.tag = e.value;
-    if (i === 2) x.author = e.value;
-    if (i === 3) x.content = e.value;
+    if (i === 2) x.content = e.value;
   });
   const res = axios.post('/api/blogs/update.php', x);
   if ((res.status = '200')) {
@@ -49,7 +48,6 @@ const getData = async () => {
     y += `<h1>${data.title}</h1>`;
     y += `<span>${data.tag}</span>`;
     y += `<span class="created">${data.created}</span>`;
-    y += `<span>By ${data.author}</span>`;
     y += `<div>${data.body}</div>`;
     x.innerHTML = y;
     blog.append(x);
@@ -59,4 +57,4 @@ const getData = async () => {
   }
 };
 
-getData();
+// getData();
