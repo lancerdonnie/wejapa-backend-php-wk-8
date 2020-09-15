@@ -2,8 +2,8 @@ live url : https://wejapablog.herokuapp.com/
 
 A blog site built with php,where users can create,view blogs and upload images.
 
-.Tailwind css
-.font awesome
+.Tailwind css  
+.Font awesome
 
 Required Features
 
