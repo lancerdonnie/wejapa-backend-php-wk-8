@@ -17,18 +17,20 @@ $blogs = readBlog();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wejapa Blog</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body>
-  <nav>
-    <h2 style="margin-left: 20px;cursor:pointer;"><a href="/"> Blog</a></h2 style="margin-left: 20px;">
-    <span class="add"><?= $logged ? '<a href="/create.php">Add Post</a>' : "" ?></span>
-    <span class="add"><?php echo $_SESSION['isAdmin'] ?  '<a href="/categories.php">Categories</a>'  : "" ?></span>
-    <span class="add"><?php echo $logged ?  $_SESSION["email"] : "" ?></span>
-    <span>
-      <form class="search" action="/search.php"><input name="search" type="text"></form>
+  <nav class="flex flex-1 items-center justify-center">
+    <span class="add cursor-pointer mr-4"><?= $logged ? '<a href="/create.php">Add</a>' : "" ?></span>
+    <span class="add cursor-pointer mr-4"><?php echo $_SESSION['isAdmin'] ?  '<a href="/categories.php">Categories</a>'  : "" ?></span>
+    <span class="add cursor-pointer mr-4"><?php echo $logged ?  $_SESSION["email"] : "" ?></span>
+    <span class="mr-4">
+      <form class="search" action="/search.php">
+        <input name="search" type="text">
+      </form>
     </span>
     <span class="add"><a href=<?php echo $logged ? "/pages/logout.php" : "/login.php" ?>><?php echo $logged ? "logout" : "login" ?></a> </span>
   </nav>
