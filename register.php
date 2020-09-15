@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user->names = $_POST["names"];
   $user->email = $_POST["email"];
   $user->password = $_POST["password"];
+  $user->isAdmin = isset($_POST["isadmin"]) ? $_POST["isadmin"] : 0;
   $details = $user->create();
 
   if ($user->create()) {
@@ -46,17 +47,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wejapa Blog</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <form action="" method="post">
-    <div><label for="email">Email</label><input type="text" name="email"></div>
-    <div><label for="names">Name</label><input type="text" name="names"></div>
-    <div><label for="password">Password</label><input type="password" name="password"></div>
-    <div><label for="confirm">Confirm Password</label><input type="password" name="confirm"></div>
-    <button type="submit">Submit</button>
+<body class="container flex flex-col h-screen items-center justify-center">
+  <form class="flex flex-col items-left" action="" method="post">
+    <div class="mb-2">
+      <label class="w-20 inline-block" for="email">Email</label>
+      <input class="border-solid border border-gray-600" type="text" name="email">
+    </div>
+    <div class="mb-2">
+      <label class="w-20 inline-block" for="names">Name</label>
+      <input class="border-solid border border-gray-600" type="text" name="names">
+    </div>
+    <div class="mb-2">
+      <label class="w-20 inline-block" for="password">Password</label>
+      <input class="border-solid border border-gray-600" type="password" name="password">
+    </div>
+    <div class="mb-2">
+      <label class="w-20 inline-block" for="confirm">Confirm Password</label>
+      <input class="border-solid border border-gray-600" type="password" name="confirm">
+    </div>
+    <div class="mb-2">
+      <label class="w-20 inline-block" for="isadmin">is Admin?</label>
+      <select class="border-solid border border-gray-600" name="isadmin">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>
+    </div>
+    <button class="bg-blue-400 text-white py-1 px-4 rounded mb-4" type="submit">Submit</button>
   </form>
-  <a href="/login.php">Login</a>
+  <a class="pr-8 text-blue-400" href="/login.php">Login</a>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ class User
 
   function create()
   {
-    if (!$this->getUser()) return false;
+    if ($this->getUser()) return false;
 
     $query = "INSERT INTO
     " . $this->table_name . "
@@ -52,6 +52,8 @@ SET
       $details = $stmt->fetch(PDO::FETCH_ASSOC);
       return $details;
     }
+    // var_dump($stmt->errorInfo());
+    // die();
     return false;
   }
 
