@@ -70,22 +70,24 @@ $cat = $cat->read();
     </span>
     <span class="add"><a href=<?php echo $logged ? "/pages/logout.php" : "/login.php" ?>><?php echo $logged ? "logout" : "login" ?></a> </span>
   </nav>
-  <div>click to edit</div>
-  <ul>
-    <?php foreach ($cat as $value) : ?>
-      <li id="<?= $value['id'] ?>"><?= $value['title'] ?></li>
-    <?php endforeach; ?>
-  </ul>
-  <h3>Add Category</h3>
-  <form action="" method="POST">
-    <div>
-      <label for="title">Category Name</label>
-      <input class="form-input" name="title">
-    </div>
-    <input name="id" type="hidden">
-    <input name="edit" type="hidden">
-    <button type="submit">add</button>
-  </form>
+  <div class="p-8">
+    <div class="mb-8 text-4xl">click to edit</div>
+    <ul class="flex flex-col items-start">
+      <?php foreach ($cat as $value) : ?>
+        <li class="cursor-pointer bg-pink-400 text-white rounded mb-2" id="<?= $value['id'] ?>"><?= $value['title'] ?></li>
+      <?php endforeach; ?>
+    </ul>
+    <h3 class="mb-8 text-4xl text-center">Add Category</h3>
+    <form action="" method="POST">
+      <div>
+        <label for="title">Category Name</label>
+        <input class="form-input" name="title">
+      </div>
+      <input name="id" type="hidden">
+      <input name="edit" type="hidden">
+      <button type="submit">add</button>
+    </form>
+  </div>
   <script>
     const ul = document.querySelectorAll('ul>li')
     ul.forEach(e => e.addEventListener("click", () => {
