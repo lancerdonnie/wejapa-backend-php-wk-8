@@ -74,7 +74,7 @@ $cat = $cat->read();
     <div class="mb-8 text-4xl">click to edit</div>
     <ul class="flex flex-col items-start">
       <?php foreach ($cat as $value) : ?>
-        <li class="cursor-pointer bg-pink-400 text-white rounded mb-2" id="<?= $value['id'] ?>"><?= $value['title'] ?></li>
+        <li class="p-2 cursor-pointer bg-pink-400 text-white rounded mb-2" id="<?= $value['id'] ?>"><?= $value['title'] ?></li>
       <?php endforeach; ?>
     </ul>
     <h3 class="mb-8 text-4xl text-center">Add Category</h3>
